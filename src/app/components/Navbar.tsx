@@ -1,26 +1,32 @@
 "use client";
-import { IoGameController } from "react-icons/io5";
 import { HiBars3 } from "react-icons/hi2";
-import { IoIosArrowDown } from "react-icons/io";
 import { HiOutlineHome } from "react-icons/hi2";
 import { AiFillSignal } from "react-icons/ai";
 import { CgSearch } from "react-icons/cg";
+import { MdOutlineGridView } from "react-icons/md";
+import { FaWhatsapp } from "react-icons/fa";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Menu, MenuButton, MenuItem, MenuItems } from "@headlessui/react";
-import { AmericaFlag, IndonesiaFlag } from "./Flag";
 import { useEffect, useState } from "react";
 import Image from "next/image";
 import { Dialog, DialogPanel } from "@headlessui/react";
+import MoxLogo from "./MoxLogo";
+import { orderLink, waLink } from "@/lib/site";
 
 const navbarMenu = [
   {
-    title: "Beranda",
+    title: "Home",
     href: "/",
     component: <HiOutlineHome className="h-4 w-4" />,
   },
   {
-    title: "Cek Transaksi",
+    title: "Services",
+    href: "/#services",
+    component: <MdOutlineGridView className="h-4 w-4" />,
+  },
+  {
+    title: "Track Order",
     href: "/invoices",
     component: <CgSearch className="h-4 w-4" />,
   },
@@ -28,19 +34,6 @@ const navbarMenu = [
     title: "Leaderboard",
     href: "/leaderboard",
     component: <AiFillSignal className="h-4 w-4" />,
-  },
-];
-
-const languageMenu = [
-  {
-    title: "Indonesia",
-    href: "/",
-    component: <IndonesiaFlag />,
-  },
-  {
-    title: "English",
-    href: "/",
-    component: <AmericaFlag />,
   },
 ];
 
@@ -229,16 +222,27 @@ export default function Navbar() {
                   <div className="my-1 h-px bg-white/5" />
                   <MenuItem>
                     <Link
-                      href={`https://www.vygaming.id/id/sign-in`}
+                      href={waLink("Hello Mox Store, I would like to place an order.")}
+                      target="_blank"
+                      rel="noopener noreferrer"
                       className="group flex w-full items-center gap-2 rounded-lg py-1.5 px-3 data-[focus]:bg-white/10"
                     >
-                      Masuk
+                      <FaWhatsapp className="h-4 w-4 text-[#25D366]" />
+                      Order via WhatsApp
                     </Link>
                   </MenuItem>
                 </MenuItems>
               </Menu>
-              <Link href={"/"} className="p-2">
-                <IoGameController className="h-10 w-10 text-blue-500" />
+              <Link href={"/"} className="flex items-center gap-2 p-2">
+                <MoxLogo className="h-9 w-9 sm:h-10 sm:w-10" />
+                <span className="hidden xs:flex flex-col leading-none select-none">
+                  <span className="text-lg font-black tracking-[0.12em] text-white">
+                    MO<span className="text-[#E30613]">X</span>
+                  </span>
+                  <span className="mt-0.5 text-[9px] font-bold tracking-[0.4em] text-white/60">
+                    STORE
+                  </span>
+                </span>
               </Link>
             </div>
             <div className="hidden lg:ml-4 lg:block lg:self-stretch">
@@ -250,8 +254,8 @@ export default function Navbar() {
                       href={d.href}
                       className={`${
                         pathname === d.href
-                          ? "font-medium text-[#0563FC] border-[#0563FC]"
-                          : "border-transparent hover:border-[#0563FC]"
+                          ? "font-medium text-[#E30613] border-[#E30613]"
+                          : "border-transparent hover:border-[#E30613]"
                       } relative flex items-center pt-px -mb-px gap-x-2 border-b-2 transition-all duration-200 ease-out`}
                     >
                       {d.component}
@@ -270,45 +274,16 @@ export default function Navbar() {
                   <SearchIcon />
                   <h1 className="hidden lg:flex">Search</h1>
                 </button>
-                <Menu>
-                  {({ open }) => (
-                    <>
-                      <MenuButton className="flex justify-center items-center px-4 py-2 gap-x-2 border border-[#535353]/50 bg-transparent hover:bg-[#1C1C1C]/50 rounded-lg transition-all duration-300 ease-in-out">
-                        <h1>ID</h1>
-                        <IoIosArrowDown
-                          className={`transition-transform duration-300 ease-in-out ${
-                            open ? "rotate-180" : ""
-                          }`}
-                        />
-                      </MenuButton>
-                      <MenuItems
-                        transition
-                        modal={false}
-                        anchor="bottom end"
-                        className="fixed w-48 mt-2 z-50 rounded-xl border border-[#212121] bg-[#1C1C1C] p-1 text-sm text-white transition duration-100 ease-out focus:outline-none data-[closed]:scale-95 data-[closed]:opacity-0"
-                      >
-                        {languageMenu?.map((d) => (
-                          <MenuItem key={d.title}>
-                            <Link
-                              href={d.href}
-                              className="group flex w-full items-center gap-2 rounded-lg py-1.5 px-3 hover:bg-white/10"
-                            >
-                              <div>{d.component}</div>
-                              <span className="ml-2">{d.title}</span>
-                            </Link>
-                          </MenuItem>
-                        ))}
-                      </MenuItems>
-                    </>
-                  )}
-                </Menu>
               </div>
               <div className="hidden lg:flex">
                 <Link
-                  href={`https://www.vygaming.id/id/sign-in`}
-                  className="flex justify-center items-center px-4 py-2 gap-x-2 border border-[#535353]/50 bg-transparent hover:bg-[#1C1C1C]/50 rounded-lg transition-all duration-300 ease-in-out"
+                  href={waLink("Hello Mox Store, I would like to place an order.")}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex justify-center items-center px-4 py-2 gap-x-2 bg-[#E30613] hover:bg-[#C40000] font-semibold rounded-lg transition-all duration-300 ease-in-out"
                 >
-                  <h1>Masuk</h1>
+                  <FaWhatsapp className="h-5 w-5" />
+                  <h1>Order Now</h1>
                 </Link>
               </div>
             </div>
@@ -357,7 +332,9 @@ export default function Navbar() {
                         return (
                           <Link
                             key={d.title}
-                            href={`https://www.vygaming.id/id/${d.handle}`}
+                            href={orderLink(d.title)}
+                            target="_blank"
+                            rel="noopener noreferrer"
                           >
                             <li className="flex items-center px-3 py-2 space-x-3 text-sm hover:bg-black/20 rounded-xl transition-colors">
                               <Image

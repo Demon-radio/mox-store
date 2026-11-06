@@ -1,6 +1,5 @@
 "use client";
 import Divider from "@/app/components/Divider";
-import Link from "next/link";
 import { useEffect, useState } from "react";
 
 interface List {
@@ -18,9 +17,9 @@ export default function Leaderboard() {
   const [error, setError] = useState<string | null>(null);
 
   const listDataCard = [
-    { title: "Hari", state: listToday },
-    { title: "Minggu", state: listWeek },
-    { title: "Bulan", state: listMonth },
+    { title: "Today", state: listToday },
+    { title: "This Week", state: listWeek },
+    { title: "This Month", state: listMonth },
   ];
 
   const getListToday = async (): Promise<void> => {
@@ -103,26 +102,16 @@ export default function Leaderboard() {
       <div className="container flex flex-col mx-auto px-4 pt-14 sm:pt-24 pb-12 space-y-5 xl:max-w-7xl justify-center items-center">
         <div className="w-full flex flex-col justify-center items-center">
           <div className="flex flex-col text-center gap-y-2">
-            <h1 className=" text-[#0563FC] font-semibold leading-7">
+            <h1 className=" text-[#E30613] font-semibold leading-7">
               Leaderboard
             </h1>
             <h1 className=" text-3xl sm:text-4xl font-bold">
-              Top 10 Pembelian Terbanyak di VYGAMING STORE
+              Top 10 Best-Selling Orders at Mox Store
             </h1>
             <p className="max-w-3xl mt-4 text-center text-lg leading-8">
-              Berikut ini adalah daftar 10 pembelian terbanyak yang dilakukan
-              oleh pelanggan kami. Data ini diambil dari sistem kami dan selalu
-              diperbaharui.{" "}
-              <span className=" text-pink-600">
-                (This website was last updated on September 11, 2024. Check the
-                latest updates directly on{" "}
-                <Link
-                  href={"https://www.vygaming.id/id/leaderboard"}
-                  className="underline font-bold hover:text-pink-500 transition-all"
-                >
-                  vygaming.id/id/leaderboard)
-                </Link>
-              </span>
+              Here is the list of the 10 best-selling orders placed by our
+              customers. Data is pulled from our system and updated
+              regularly.
             </p>
           </div>
           <div className="w-full grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-8 mt-14 sm:mt-24 text-sm">
@@ -134,7 +123,7 @@ export default function Leaderboard() {
                 >
                   <div className="flex w-full">
                     <div className="px-4 py-1.5 ml-3 bg-[#212121] ring-1 ring-[#535353] text-xs rounded-t-md">
-                      Top 10 - {d.title} Ini
+                      Top 10 — {d.title}
                     </div>
                   </div>
                   <div className="w-full h-full p-6 bg-[#1E1E1E] rounded-lg ring-1 ring-[#212121]">
@@ -153,10 +142,10 @@ export default function Leaderboard() {
                                 : null}
                             </div>
                             <div>
-                              Rp{" "}
+                              EGP{" "}
                               {d.totalAmount
                                 .toString()
-                                .replace(/\B(?=(\d{3})+(?!\d))/g, ".")}
+                                .replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
                             </div>
                           </li>
                         );

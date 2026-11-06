@@ -4,6 +4,7 @@ import Popular from "./(home)/_components/Popular";
 import FlashSale from "./(home)/_components/Flashsale";
 import CarouselHomePage from "./(home)/_components/Carousel";
 import Products from "./(home)/_components/Products";
+import Services from "./(home)/_components/Services";
 
 export default function Home() {
   return (
@@ -14,6 +15,7 @@ export default function Home() {
           <FlashSale />
           <Popular />
           <Products />
+          <Services />
           <Divider />
         </div>
       </main>

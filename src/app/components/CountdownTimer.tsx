@@ -8,7 +8,9 @@ interface TimeLeft {
 }
 
 const getTargetDate = () => {
-  return new Date("Jan 1, 2026 00:00:00");
+  // Always count down to Jan 1st of next year — the sale date is dynamic.
+  const now = new Date();
+  return new Date(now.getFullYear() + 1, 0, 1);
 };
 
 const calculateTimeLeft = (targetDate: Date) => {
@@ -72,7 +74,7 @@ const CountdownTimer = () => {
   return (
     <div className="flex items-center space-x-1 font-normal text-sm">
       {isExpired ? (
-        <span className="text-red-500 text-lg font-semibold">(Expired on January 1, 2026)</span>
+        <span className="text-red-500 text-lg font-semibold">(New drops coming soon…)</span>
       ) : (
         timerComponents
       )}

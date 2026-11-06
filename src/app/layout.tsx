@@ -18,9 +18,24 @@ const geistMono = localFont({
 });
 
 export const metadata: Metadata = {
-  title: "VYGAMING Clone by Hassankary",
+  metadataBase: new URL(process.env.NEXT_PUBLIC_BASE_URL || "http://localhost:5173"),
+  title: "Mox Store | Game Top-Up, Subscriptions & Digital Services",
   description:
-    "Top up game & voucher terlaris, murah, aman legal 100% buka 24 Jam dengan payment terlengkap se-Indonesia.",
+    "Mox Store — everything you need in one place: game top-ups, streaming & app subscriptions, AI plans, PayPal transfers and ad services. Fast, trusted and secure — 24/7 support via WhatsApp.",
+  openGraph: {
+    title: "Mox Store | Game Top-Up, Subscriptions & Digital Services",
+    description:
+      "Game top-ups, subscriptions, AI plans, apps & PayPal — delivered 24/7.",
+    type: "website",
+    images: [
+      {
+        url: "/images/mox-banner.png",
+        width: 1600,
+        height: 900,
+        alt: "Mox Store — Everything you need in one place. Trusted digital services, fast and secure.",
+      },
+    ],
+  },
 };
 
 export const viewport: Viewport = {
@@ -41,7 +56,7 @@ export default function RootLayout({
       >
         <NextTopLoader
           height={2}
-          color="linear-gradient(to right, rgb(134, 239, 172), rgb(59, 130, 246), rgb(147, 51, 234))"
+          color="linear-gradient(to right, rgb(255, 45, 45), rgb(227, 6, 19), rgb(168, 0, 10))"
         />
         <Navbar />
         {children}

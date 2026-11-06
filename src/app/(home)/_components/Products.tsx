@@ -72,7 +72,7 @@ export default function Products() {
                   onClick={() => setMenu(d.name)}
                   className={`${
                     menu === d.name
-                      ? `bg-[#0563FC] active:bg-[#0563FC]/75 md:hover:bg-[#0563FC]/75`
+                      ? `bg-[#E30613] active:bg-[#E30613]/75 md:hover:bg-[#E30613]/75`
                       : `bg-[#212121] active:bg-[#212121]/75 md:hover:bg-[#212121]/75`
                   } px-4 py-2 font-semibold text-sm rounded-lg transition-all duration-300 ease-out`}
                 >
@@ -85,7 +85,7 @@ export default function Products() {
                 key={i}
                 className={`${
                   d === "Top Up"
-                    ? `bg-[#0563FC] active:bg-[#0563FC]/75 md:hover:bg-[#0563FC]/75`
+                    ? `bg-[#E30613] active:bg-[#E30613]/75 md:hover:bg-[#E30613]/75`
                     : `bg-[#212121] active:bg-[#212121]/75 md:hover:bg-[#212121]/75`
                 } px-4 py-2 font-semibold text-sm rounded-lg transition-all duration-300 ease-out`}
               >
@@ -119,7 +119,7 @@ export default function Products() {
             onClick={() => setMore({ ...more, topup: more.topup + 12 })}
             className={`h-10 px-4 py-2 bg-[#121212] active:bg-[#121212]/70 md:hover:bg-[#121212]/80 font-medium text-xs rounded-md active:scale-95 transition-all duration-300 ease-out`}
           >
-            Tampilkan Lainnya...
+            Show More…
           </button>
         ) : menu === "Voucher" &&
           more.voucher < products[1]?.products.length ? (
@@ -127,7 +127,7 @@ export default function Products() {
             onClick={() => setMore({ ...more, voucher: more.voucher + 12 })}
             className={`h-10 px-4 py-2 bg-[#121212] active:bg-[#121212]/70 md:hover:bg-[#121212]/80 font-medium text-xs rounded-md active:scale-95 transition-all duration-300 ease-out`}
           >
-            Tampilkan Lainnya...
+            Show More…
           </button>
         ) : null}
       </div>

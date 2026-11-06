@@ -1,6 +1,7 @@
 "use client";
 import Image from "next/image";
 import Link from "next/link";
+import { orderLink } from "@/lib/site";
 
 interface ProductDetail {
   categoryName: string;
@@ -20,9 +21,14 @@ interface ProductsCardProps {
 
 export default function ProductsCard({ d }: ProductsCardProps) {
   return (
-    <Link href={`https://www.vygaming.id/id/${d.handle}`} className="hover:scale-105 transition-all duration-300 ease-out">
+    <Link
+      href={orderLink(d.title)}
+      target="_blank"
+      rel="noopener noreferrer"
+      className="hover:scale-105 transition-all duration-300 ease-out"
+    >
       <div
-        className={`animate-fade-up animate-duration-300 group relative h-full w-full flex flex-col bg-[#212121] rounded-2xl overflow-hidden hover:ring-2 hover:ring-offset-2 hover:ring-offset-[#141414] hover:ring-[#0563FC] transition-all duration-300 ease-in-out`}
+        className={`animate-fade-up animate-duration-300 group relative h-full w-full flex flex-col bg-[#212121] rounded-2xl overflow-hidden hover:ring-2 hover:ring-offset-2 hover:ring-offset-[#141414] hover:ring-[#E30613] transition-all duration-300 ease-in-out`}
       >
         <Image
           src={d.thumbnail}

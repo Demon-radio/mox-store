@@ -3,6 +3,9 @@ import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import Marquee from "react-fast-marquee";
+import { orderLink } from "@/lib/site";
+
+const formatPrice = (n: number) => n.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 
 interface FlashSale {
   currency: string;
@@ -61,7 +64,7 @@ export default function FlashSale() {
             </span>
             <CountdownTimer />
           </div>
-          <p className="pl-8 text-xs">Pesan sekarang! Persediaan terbatas.</p>
+          <p className="pl-8 text-xs">Order now! Limited stock.</p>
         </div>
         <Marquee pauseOnHover autoFill className="flex">
           <div className="flex flex-row px-2 py-3 gap-x-4">
@@ -80,7 +83,9 @@ export default function FlashSale() {
               : flashSale?.map((d, i) => {
                   return (
                     <Link
-                      href={`https://www.vygaming.id/id/${d.productHandle}`}
+                      href={orderLink(d.productName)}
+                      target="_blank"
+                      rel="noopener noreferrer"
                       key={i}
                       className="w-[265px] flex flex-col flex-shrink-0 p-4 bg-[#202020] border border-[#212121] font-semibold gap-y-2 rounded-xl overflow-hidden"
                     >
@@ -95,16 +100,10 @@ export default function FlashSale() {
                         <div className="flex flex-col overflow-hidden">
                           <h1 className="text-sm">{d.productName}</h1>
                           <h1 className="text-xs text-[#B42D6C] line-through">
-                            Rp{" "}
-                            {d.originalPrice
-                              .toString()
-                              .replace(/\B(?=(\d{3})+(?!\d))/g, ".")}
+                            EGP {formatPrice(d.originalPrice)}
                           </h1>
-                          <h1 className="text-xs text-[#0563FC]">
-                            Rp{" "}
-                            {d.price
-                              .toString()
-                              .replace(/\B(?=(\d{3})+(?!\d))/g, ".")}
+                          <h1 className="text-xs text-[#E30613]">
+                            EGP {formatPrice(d.price)}
                           </h1>
                         </div>
                       </div>
@@ -112,13 +111,10 @@ export default function FlashSale() {
                         {d.productVariantName}
                       </div>
                       <div className=" w-24 absolute -mt-[24px] ml-[161px] aspect-square rounded overflow-hidden">
-                        <div className="absolute h-2 w-2 bg-[#113F8C]"></div>
-                        <div className="absolute right-0 bottom-0 h-2 w-2 bg-[#113F8C]"></div>
-                        <div className="absolute w-[137px] py-1 rotate-45 top-7 -right-[28px] uppercase text-center text-[10px] bg-[#0563FC]">
-                          Hemat Rp{" "}
-                          {(d.originalPrice - d.price)
-                            .toString()
-                            .replace(/\B(?=(\d{3})+(?!\d))/g, ".")}
+                        <div className="absolute h-2 w-2 bg-[#7A0A10]"></div>
+                        <div className="absolute right-0 bottom-0 h-2 w-2 bg-[#7A0A10]"></div>
+                        <div className="absolute w-[137px] py-1 rotate-45 top-7 -right-[28px] uppercase text-center text-[10px] bg-[#E30613]">
+                          Save EGP {formatPrice(d.originalPrice - d.price)}
                         </div>
                       </div>
                     </Link>
