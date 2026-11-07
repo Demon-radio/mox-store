@@ -5,8 +5,7 @@ const nextConfig = {
   distDir: 'out',
   images: {
     unoptimized: true
-  },
-  assetPrefix: process.env.NODE_ENV === 'production' ? '/game-voucher-website' : '',
+  }
 }
 
 module.exports = nextConfig
