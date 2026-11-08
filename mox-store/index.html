@@ -5,12 +5,105 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Mox Store | Game Top-Up, Subscriptions & Digital Services</title>
   <meta name="description" content="Mox Store - Everything you need in one place. Game top-up, subscriptions, and digital services.">
-  <link rel="stylesheet" href="styles.css">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f4f4f4;
+    }
+    .hero {
+      background-color: #1a1a1a;
+      color: white;
+      padding: 2rem;
+      text-align: center;
+    }
+    .hero h1 {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+      color: #ff4a3d;
+    }
+    .hero p {
+      font-size: 1.2rem;
+      margin-bottom: 1.5rem;
+    }
+    .services {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 2rem;
+    }
+    .services h2 {
+      text-align: center;
+      font-size: 2rem;
+      margin-bottom: 2rem;
+    }
+    .service-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+    }
+    .service-card {
+      background-color: white;
+      border-radius: 10px;
+      padding: 2rem;
+      text-align: center;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    }
+    .service-card h3 {
+      color: #ff4a3d;
+      margin-bottom: 1rem;
+    }
+    .contact {
+      background-color: #1a1a1a;
+      color: white;
+      padding: 2rem;
+      text-align: center;
+    }
+    .contact h2 {
+      margin-bottom: 1rem;
+    }
+    .btn {
+      display: inline-block;
+      padding: 0.8rem 1.5rem;
+      background-color: #ff4a3d;
+      color: white;
+      text-decoration: none;
+      border-radius: 5px;
+      margin-top: 1rem;
+    }
+    .btn:hover {
+      background-color: #e03628;
+    }
+    nav {
+      background-color: #1a1a1a;
+      padding: 1rem;
+    }
+    nav ul {
+      list-style: none;
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      margin: 0;
+      padding: 0;
+    }
+    nav a {
+      color: white;
+      text-decoration: none;
+    }
+    nav a:hover {
+      color: #ff4a3d;
+    }
+    footer {
+      background-color: #0a0a0a;
+      color: white;
+      text-align: center;
+      padding: 1rem;
+    }
+  </style>
 </head>
 <body>
   <header>
     <nav>
-      <h1>Mox Store</h1>
       <ul>
         <li><a href="#home">Home</a></li>
         <li><a href="#services">Services</a></li>
@@ -20,67 +113,51 @@
   </header>
 
   <main>
-    <section id="home">
-      <div class="hero">
-        <img src="images/mox-banner.png" alt="Mox Store Banner" class="hero-image">
-        <div class="hero-content">
-          <h2>Welcome to Mox Store</h2>
-          <p>Your one-stop destination for all digital services</p>
-          <div class="hero-buttons">
-            <a href="#services" class="btn btn-primary">Explore Services</a>
-            <a href="#contact" class="btn btn-secondary">Contact Us</a>
-          </div>
-        </div>
-      </div>
+    <section id="home" class="hero">
+      <h2>Welcome to Mox Store</h2>
+      <p>Your one-stop destination for all digital services</p>
+      <a href="#services" class="btn">Explore Services</a>
     </section>
 
-    <section id="services">
+    <section id="services" class="services">
       <h2>Our Services</h2>
-      <div class="services-grid">
+      <div class="service-grid">
         <div class="service-card">
-          <div class="service-icon">🎮</div>
           <h3>Game Top-Up</h3>
           <p>Top-up for your favorite games</p>
         </div>
         <div class="service-card">
-          <div class="service-icon">🎬</div>
           <h3>Streaming</h3>
           <p>Access to popular streaming platforms</p>
         </div>
         <div class="service-card">
-          <div class="service-icon">📱</div>
           <h3>Mobile Services</h3>
           <p>Mobile credits and data packages</p>
         </div>
         <div class="service-card">
-          <div class="service-icon">💳</div>
           <h3>Payments</h3>
           <p>Secure payment processing</p>
         </div>
         <div class="service-card">
-          <div class="service-icon">📺</div>
           <h3>Subscriptions</h3>
           <p>Manage your subscriptions</p>
         </div>
         <div class="service-card">
-          <div class="service-icon">🎯</div>
           <h3>Gaming</h3>
           <p>Gaming accessories and services</p>
         </div>
       </div>
     </section>
 
-    <section id="contact">
+    <section id="contact" class="contact">
       <h2>Contact Us</h2>
       <p>Get in touch with us for any inquiries</p>
-      <a href="mailto:info@moxstore.com" class="btn btn-primary">Send Email</a>
+      <a href="mailto:info@moxstore.com" class="btn">Send Email</a>
     </section>
   </main>
 
   <footer>
     <p>&copy; 2026 Mox Store. All rights reserved.</p>
   </footer>
-
-  <script src="script.js"></script>
 </body>
 </html>
