@@ -14,7 +14,7 @@ export interface ServiceWithImageImage {
   image: string;
 }
 
-const S = "/images/services";
+const S = "/mox-store/images/services";
 
 export const SERVICE_IMAGES: Record<string, string> = {
   // ── Games & Top-Up ───────────────────────────────────────────────

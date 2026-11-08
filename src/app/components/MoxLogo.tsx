@@ -13,12 +13,12 @@ export default function MoxLogo({ className = "h-10 w-10" }: { className?: strin
   useEffect(() => {
     const img = new Image();
     img.onload = () => setOfficial(true);
-    img.src = "/images/mox-logo.png";
+    img.src = "/mox-store/images/mox-logo.png";
   }, []);
 
   if (official) {
     // eslint-disable-next-line @next/next/no-img-element
-    return <img src="/images/mox-logo.png" alt="Mox Store logo" className={`${className} object-contain select-none`} />;
+    return <img src="/mox-store/images/mox-logo.png" alt="Mox Store logo" className={`${className} object-contain select-none`} />;
   }
   return <MoxMark className={className} />;
 }

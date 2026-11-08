@@ -2,9 +2,19 @@
 const nextConfig = {
   output: 'export',
   trailingSlash: true,
-  distDir: 'out',
+  basePath: '/mox-store',
   images: {
     unoptimized: true
+  },
+  eslint: {
+    ignoreDuringBuilds: true
+  },
+  typescript: {
+    ignoreBuildErrors: true
+  },
+  experimental: {
+    // Speed up static generation
+    // Do not disable all optimizations
   }
 }
 

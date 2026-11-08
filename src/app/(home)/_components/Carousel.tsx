@@ -201,12 +201,12 @@ export default function CarouselHomePage() {
         img.src = src;
       });
     (async () => {
-      if (await tryLoad("/images/mox-banner.png")) {
-        if (!cancelled) setOfficialBanner("/images/mox-banner.png");
+      if (await tryLoad("/mox-store/images/mox-banner.png")) {
+        if (!cancelled) setOfficialBanner("/mox-store/images/mox-banner.png");
         return;
       }
-      if (await tryLoad("/images/mox-banner.jpg")) {
-        if (!cancelled) setOfficialBanner("/images/mox-banner.jpg");
+      if (await tryLoad("/mox-store/images/mox-banner.jpg")) {
+        if (!cancelled) setOfficialBanner("/mox-store/images/mox-banner.jpg");
       }
     })();
     return () => {
