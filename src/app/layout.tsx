@@ -18,7 +18,7 @@ const geistMono = localFont({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL(process.env.NEXT_PUBLIC_BASE_URL || "https://Demon-radio.github.io/mox-store"),
+  metadataBase: new URL(process.env.NEXT_PUBLIC_BASE_URL || "https://Demon-radio.github.io"),
   title: "Mox Store | Game Top-Up, Subscriptions & Digital Services",
   description:
     "Mox Store — everything you need in one place: game top-ups, streaming & app subscriptions, AI plans, PayPal transfers and ad services. Fast, trusted and secure — 24/7 support via WhatsApp.",
