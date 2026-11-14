@@ -17,6 +17,7 @@ const dataFooter = [
     title: "Site Map",
     data: [
       { title: "Home", href: "/" },
+      { title: "Top-Up Store", href: "/topup" },
       { title: "Services", href: "/#services" },
       { title: "Track Order", href: "/invoices" },
       { title: "Leaderboard", href: "/leaderboard" },

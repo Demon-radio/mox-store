@@ -4,21 +4,28 @@ import { HiOutlineHome } from "react-icons/hi2";
 import { AiFillSignal } from "react-icons/ai";
 import { CgSearch } from "react-icons/cg";
 import { MdOutlineGridView } from "react-icons/md";
+import { IoGameController } from "react-icons/io5";
 import { FaWhatsapp } from "react-icons/fa";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Menu, MenuButton, MenuItem, MenuItems } from "@headlessui/react";
 import { useEffect, useState } from "react";
-import Image from "next/image";
 import { Dialog, DialogPanel } from "@headlessui/react";
 import MoxLogo from "./MoxLogo";
-import { orderLink, waLink } from "@/lib/site";
+import GameIcon from "./GameIcon";
+import { waLink } from "@/lib/site";
+import { GAMES, POPULAR_GAMES, topupLink } from "@/lib/games";
 
 const navbarMenu = [
   {
     title: "Home",
     href: "/",
     component: <HiOutlineHome className="h-4 w-4" />,
+  },
+  {
+    title: "Top-Up",
+    href: "/topup",
+    component: <IoGameController className="h-4 w-4" />,
   },
   {
     title: "Services",
@@ -77,98 +84,16 @@ const SearchIconModal: React.FC = () => {
   );
 };
 
-interface Product {
-  name: string;
-  products: ProductDetail[];
-}
-
-interface ProductDetail {
-  categoryName: string;
-  code: string;
-  handle: string;
-  inputs: string[];
-  isPopular: boolean;
-  publisher: string;
-  subtitle: string;
-  thumbnail: string;
-  title: string;
-}
-
-interface PopularProducts {
-  categoryName: string;
-  code: string;
-  handle: string;
-  input: string[];
-  isPopular: boolean;
-  publisher: string;
-  subtitle: string;
-  thumbnail: string;
-  title: string;
-}
-
 export default function Navbar() {
   const pathname = usePathname();
-  // console.log("Current path:", pathname);
-  const [popularProducts, setPopularProducts] = useState<PopularProducts[]>([]);
-  const [products, setProducts] = useState<Product[]>([]);
   const [openModal, setOpenModal] = useState<boolean>(false);
-  const [error, setError] = useState<string | null>(null);
   const [search, setSearch] = useState<string>("");
 
-  const getProducts = async (): Promise<void> => {
-    try {
-      const res = await fetch("https://game-voucher-api.vercel.app/product");
-
-      if (!res.ok) {
-        throw new Error(`HTTP error! Status: ${res.status}`);
-      }
-
-      const response = await res.json();
-      setProducts(response);
-    } catch (error) {
-      if (error instanceof Error) {
-        setError(error.message);
-      } else {
-        setError("An unexpected error occurred");
-      }
-    }
-  };
-
-  const getPopular = async (): Promise<void> => {
-    try {
-      const res = await fetch("https://game-voucher-api.vercel.app/popular");
-
-      if (!res.ok) {
-        throw new Error(`HTTP error! Status: ${res.status}`);
-      }
-
-      const response = await res.json();
-      setPopularProducts(response);
-    } catch (error) {
-      if (error instanceof Error) {
-        setError(error.message);
-      } else {
-        setError("An unexpected error occurred");
-      }
-    }
-  };
-
   useEffect(() => {
-    if (openModal) {
-      getPopular();
-      getProducts();
-    } else {
-      setPopularProducts([]);
-      setProducts([]);
+    if (!openModal) {
       setSearch("");
     }
   }, [openModal]);
-
-  useEffect(() => {
-    if (error) {
-      console.error("Error fetching Navbar:", error);
-    }
-  }, [error]);
 
   const open = () => {
     setOpenModal(!openModal);
@@ -178,14 +103,9 @@ export default function Navbar() {
     setOpenModal(false);
   };
 
-  const allProducts = [
-    ...(products[0]?.products || []),
-    ...(products[1]?.products || []),
-  ];
-
   const filteredProducts =
-    allProducts?.filter((product) =>
-      product.title.toLowerCase().includes(search.toLowerCase())
+    GAMES.filter((g) =>
+      g.name.toLowerCase().includes(search.toLowerCase())
     ) || [];
 
   return (
@@ -319,33 +239,26 @@ export default function Navbar() {
                     {search !== "" ? "Search" : "Popular"}
                   </h1>
                 ) : null}
-                {search === "" && popularProducts.length === 0 ? (
-                  <div className="h-[312px] flex justify-center items-center"></div> //loading popularProducts component
-                ) : search !== "" && filteredProducts.length === 0 ? (
+                {search !== "" && filteredProducts.length === 0 ? (
                   <div className="flex items-center justify-center px-6 py-14 sm:px-14 text-sm">
                     {`We couldn't find any products with that term. Please try again.`}
                   </div>
                 ) : (
                   <ul className="pt-2">
-                    {(search === "" ? popularProducts : filteredProducts).map(
-                      (d) => {
+                    {(search === "" ? POPULAR_GAMES : filteredProducts).map(
+                      (g) => {
                         return (
-                          <Link
-                            key={d.title}
-                            href={orderLink(d.title)}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                          >
+                          <Link key={g.slug} href={topupLink(g.slug)}>
                             <li className="flex items-center px-3 py-2 space-x-3 text-sm hover:bg-black/20 rounded-xl transition-colors">
-                              <Image
-                                src={d.thumbnail}
-                                alt={d.title}
-                                height={300}
-                                width={300}
-                                unoptimized
-                                className="w-24 object-cover aspect-square rounded-2xl"
-                              />
-                              <div>{d.title}</div>
+                              <div className="w-24 h-24 rounded-2xl bg-white/95 p-2 shrink-0">
+                                <GameIcon image={g.image} name={g.name} />
+                              </div>
+                              <div className="flex flex-col">
+                                <span>{g.name}</span>
+                                <span className="text-[10px] text-white/50">
+                                  {g.publisher} • {g.currency}
+                                </span>
+                              </div>
                             </li>
                           </Link>
                         );
