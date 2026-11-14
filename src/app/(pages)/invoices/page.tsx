@@ -35,8 +35,8 @@ export default function Invoices() {
         className="container flex flex-col mx-auto px-4 py-12 space-y-5 xl:max-w-7xl justify-center items-center"
       >
         <div className="flex flex-col w-full gap-y-3">
-          <h1 className="font-bold text-3xl sm:text-4xl">Find your order!</h1>
-          <p>
+          <h1 className="font-outfit text-3xl sm:text-4xl font-extrabold text-white tracking-tight">Find your order</h1>
+          <p className="text-sm text-white/55">
             Track your order by entering your invoice number below and our
             team will help you on WhatsApp:
           </p>
@@ -52,13 +52,13 @@ export default function Invoices() {
             name="invoice"
             ref={inputRef}
             placeholder="MXXXXXXXXXXXXXXXX"
-            className=" max-w-[576px] px-3 py-2 placeholder-white text-xs text-white bg-[#535353] rounded-md"
+            className="max-w-[576px] h-11 px-3.5 placeholder:text-white/30 text-sm text-white bg-[#242425] border border-white/10 rounded focus:border-white/40 focus:outline-none transition-colors"
           />
         </div>
         <div className="w-full flex justify-start font-medium text-sm">
           <button
             type="submit"
-            className="flex items-center gap-2 pl-3 pr-4 py-2 bg-[#E30613] hover:bg-[#C40000] active:scale-95 rounded-lg transition-all duration-300 "
+            className="flex items-center gap-2 pl-3 pr-4 py-2.5 bg-[#E30613] hover:bg-[#C40000] active:scale-95 rounded transition-colors duration-150"
           >
             {loading ? (
               <div className="flex justify-center items-center w-[114.325px]">

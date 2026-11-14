@@ -6,15 +6,22 @@ import NextTopLoader from "nextjs-toploader";
 import Footer from "./components/Footer";
 import type { Viewport } from "next";
 
-const geistSans = localFont({
-  src: "./fonts/GeistVF.woff",
-  variable: "--font-geist-sans",
+const outfit = localFont({
+  src: "./fonts/outfit-latin-wght.woff2",
+  variable: "--font-outfit",
   weight: "100 900",
+  display: "swap",
 });
-const geistMono = localFont({
-  src: "./fonts/GeistMonoVF.woff",
-  variable: "--font-geist-mono",
-  weight: "100 900",
+
+const plexSans = localFont({
+  src: [
+    { path: "./fonts/plex-latin-400.woff2", weight: "400", style: "normal" },
+    { path: "./fonts/plex-latin-500.woff2", weight: "500", style: "normal" },
+    { path: "./fonts/plex-latin-600.woff2", weight: "600", style: "normal" },
+    { path: "./fonts/plex-latin-700.woff2", weight: "700", style: "normal" },
+  ],
+  variable: "--font-plex-sans",
+  display: "swap",
 });
 
 export const metadata: Metadata = {
@@ -52,7 +59,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased bg-[#171717] font-sans text-white`}
+        className={`${outfit.variable} ${plexSans.variable} antialiased bg-[#1C1C1D] font-plex text-[#E5E7EB]`}
       >
         <NextTopLoader
           height={2}

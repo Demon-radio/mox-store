@@ -14,38 +14,43 @@ import {
 
 const dataFooter = [
   {
-    title: "Site Map",
+    title: "Shop",
     data: [
-      { title: "Home", href: "/" },
-      { title: "Top-Up Store", href: "/topup" },
-      { title: "Services", href: "/#services" },
-      { title: "Track Order", href: "/invoices" },
-      { title: "Leaderboard", href: "/leaderboard" },
+      { title: "All Products", href: "/topup" },
+      { title: "Direct Top-Up", href: "/topup" },
+      { title: "Subscriptions", href: "/topup" },
+      { title: "Gift Cards", href: "/topup" },
     ],
   },
   {
-    title: "Support",
+    title: "Help",
     data: [
       {
         title: "Order via WhatsApp",
         href: waLink("Hello Mox Store, I need help with my order."),
       },
       { title: "WhatsApp Channel", href: WHATSAPP_CHANNEL },
-      { title: "Instagram", href: INSTAGRAM_LINK },
-      { title: "Facebook", href: FACEBOOK_LINK },
+      { title: "Track Order", href: "/invoices" },
+      { title: "Leaderboard", href: "/leaderboard" },
     ],
   },
   {
     title: "Payment Methods",
     data: [
-      { title: `Vodafone Cash — ${WHATSAPP_NUMBER_DISPLAY}`, href: waLink("Hello Mox Store, I want to pay via Vodafone Cash.") },
+      {
+        title: `Vodafone Cash — ${WHATSAPP_NUMBER_DISPLAY}`,
+        href: waLink("Hello Mox Store, I want to pay via Vodafone Cash."),
+      },
       { title: `InstaPay — ${INSTAPAY_ADDRESS}`, href: INSTAPAY_LINK },
       { title: `Telda — ${WHATSAPP_NUMBER_DISPLAY}`, href: TELDA_LINK },
     ],
   },
   {
-    title: "Legal",
+    title: "Company",
     data: [
+      { title: "Services", href: "/#services" },
+      { title: "Instagram", href: INSTAGRAM_LINK },
+      { title: "Facebook", href: FACEBOOK_LINK },
       { title: "Privacy Policy", href: "/" },
       { title: "Terms & Conditions", href: "/" },
     ],
@@ -54,50 +59,61 @@ const dataFooter = [
 
 export default function Footer() {
   return (
-    <div className="w-full bg-[#121212]">
-      <div className="container flex flex-col mx-auto px-4 py-12 space-y-10 xl:max-w-7xl items-center">
-        {/* Brand block */}
-        <div className="flex flex-col items-center text-center space-y-3">
-          <MoxLogo className="h-16 w-16" />
-          <div className="flex flex-col leading-none">
-            <span className="text-xl font-black tracking-[0.12em] text-white">
-              MO<span className="text-[#E30613]">X</span>
-            </span>
-            <span className="mt-1 text-[10px] font-bold tracking-[0.4em] text-white/60">
-              STORE
-            </span>
+    <footer className="w-full border-t border-white/[0.08] bg-[#19191A]">
+      <div className="container flex flex-col mx-auto px-4 py-12 gap-y-10 xl:max-w-7xl">
+        {/* Top row: brand + link columns */}
+        <div className="grid grid-cols-1 lg:grid-cols-5 gap-10">
+          {/* Brand block */}
+          <div className="flex flex-col items-start gap-3">
+            <div className="flex items-center gap-3">
+              <MoxLogo className="h-11 w-11" />
+              <div className="flex flex-col leading-none">
+                <span className="font-outfit text-xl font-black tracking-[0.12em] text-white">
+                  MO<span className="text-[#E30613]">X</span>
+                </span>
+                <span className="mt-1 text-[10px] font-bold tracking-[0.4em] text-white/60">
+                  STORE
+                </span>
+              </div>
+            </div>
+            <p className="text-xs leading-relaxed text-white/50 max-w-xs">
+              Game top-ups, subscriptions, AI plans, apps and digital services —
+              delivered fast, 24/7. After payment, send your receipt screenshot
+              on WhatsApp.
+            </p>
+            <Link
+              href={waLink("Hello Mox Store, I have a question.")}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="mt-1 flex items-center gap-2 rounded bg-[#E30613] hover:bg-[#C40000] px-4 py-2 text-xs font-bold text-white transition-colors"
+            >
+              Chat with us on WhatsApp
+            </Link>
           </div>
-          <p className="text-xs text-white/60 max-w-md">
-            Everything you need in one place — game top-ups, subscriptions, AI
-            plans, apps and digital services. After payment, send your
-            receipt screenshot on WhatsApp.
-          </p>
-        </div>
 
-        <div className="flex flex-col w-full space-y-5">
-          <div className="w-full grid grid-cols-2 sm:grid-cols-4 gap-8 font-normal text-sm">
+          {/* Link columns */}
+          <div className="grid grid-cols-2 sm:grid-cols-4 lg:col-span-4 gap-8 text-sm">
             {dataFooter.map((d) => {
               return (
-                <div key={d.title} className="flex flex-col space-y-6">
-                  <div className="font-semibold text-[#E30613] leading-6">
+                <div key={d.title} className="flex flex-col gap-4">
+                  <div className="font-outfit text-xs font-bold uppercase tracking-wider text-white">
                     {d.title}
                   </div>
-                  <div className="flex flex-col space-y-4">
-                    {d.data?.map((d) => {
+                  <div className="flex flex-col gap-2.5">
+                    {d.data?.map((l) => {
                       return (
                         <Link
-                          key={d.title}
-                          href={d.href}
-                          target={d.href.startsWith("http") ? "_blank" : undefined}
+                          key={l.title}
+                          href={l.href}
+                          target={l.href.startsWith("http") ? "_blank" : undefined}
                           rel={
-                            d.href.startsWith("http")
+                            l.href.startsWith("http")
                               ? "noopener noreferrer"
                               : undefined
                           }
+                          className="text-xs text-white/55 hover:text-white transition-colors break-words"
                         >
-                          <div className="hover:text-[#E30613]/75 transition-all leading-6 break-words">
-                            {d.title}
-                          </div>
+                          {l.title}
                         </Link>
                       );
                     })}
@@ -107,21 +123,18 @@ export default function Footer() {
             })}
           </div>
         </div>
-        <div className="w-full text-xs text-center space-y-1 pt-10 border-t border-[#343434]">
-          <h1>© 2026 Mox Store. All rights reserved.</h1>
-          <h1>
-            Questions?{" "}
-            <Link
-              href={waLink("Hello Mox Store, I have a question.")}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="font-semibold text-[#E30613]"
-            >
-              Chat with us on WhatsApp
-            </Link>
-          </h1>
+
+        {/* Bottom row: copyright + legal */}
+        <div className="flex flex-col gap-3 pt-8 border-t border-white/[0.08] text-[11px] text-white/40">
+          <p className="leading-relaxed">
+            Mox Store is an independent store. We are not affiliated with,
+            sponsored by or endorsed by any game publisher or brand sold on this
+            site. Game names, logos and trademarks belong to their respective
+            owners and are shown only to identify the products we sell.
+          </p>
+          <p>© 2026 Mox Store. All rights reserved.</p>
         </div>
       </div>
-    </div>
+    </footer>
   );
 }

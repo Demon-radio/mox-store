@@ -39,10 +39,10 @@ export default function Services() {
     >
       {/* Heading */}
       <div className="flex flex-col gap-y-1">
-        <h1 className="uppercase font-semibold text-lg leading-relaxed tracking-wider">
-          🛍️ Mox Store Services
+        <h1 className="font-outfit text-xs font-bold uppercase tracking-[0.14em] text-white/90">
+          Mox Store Services
         </h1>
-        <p className="text-xs text-white/50 -mt-1 pl-1">{category.tagline}</p>
+        <p className="text-xs text-white/50 -mt-1 pl-0">{category.tagline}</p>
       </div>
 
       {/* Service cards */}
@@ -55,7 +55,7 @@ export default function Services() {
               href={orderLink(`${item.name}${item.subtitle ? ` (${item.subtitle})` : ""}`)}
               target="_blank"
               rel="noopener noreferrer"
-              className="group flex flex-col gap-2 bg-[#212121] rounded-2xl p-4 border border-transparent hover:border-[#E30613]/60 hover:shadow-[0_0_25px_rgba(227,6,19,0.18)] transition-all duration-300"
+              className="group flex flex-col gap-2 bg-[#242425] rounded border border-white/[0.08] p-4 hover:border-[#E30613]/60 transition-all duration-200"
             >
               {/* Service logo / branded tile */}
               <div className="relative flex h-28 w-full items-center justify-center rounded-xl overflow-hidden bg-gradient-to-br from-[#262626] to-[#121212] ring-1 ring-white/5 mb-2">
